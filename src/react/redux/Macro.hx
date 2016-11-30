@@ -10,12 +10,25 @@ class Macro {
 		var fields = Context.getBuildFields();
 		var name = cls.module.split('.');
 		if(name[name.length - 1] != cls.name) name.push(cls.name);
+		
+		var mapStateToProps = macro null;
+		var mapDispatchToProps = macro null;
+		var mergeProps = macro null;
+		
+		for(field in fields) {
+			switch field.name {
+				case 'mapStateToProps': mapStateToProps = macro mapStateToProps;
+				case 'mapDispatchToProps': mapDispatchToProps = macro mapDispatchToProps;
+				case 'mergeProps': mergeProps = macro mergeProps;
+			}
+		}
+		
 		fields.push({
 			access: [AStatic],
 			name: '__init__',
 			kind: FFun({
 				args: [],
-				expr: macro @:pos(pos) untyped __js__('{0} = {1}', $p{name}, react.ReactRedux.connect(mapStateToProps, mapDispatchToProps)($e)),
+				expr: macro @:pos(pos) untyped __js__('{0} = {1}', $p{name}, react.ReactRedux.connect($mapStateToProps, $mapDispatchToProps, $mergeProps)($e)),
 				ret: null,
 			}),
 			pos: pos,

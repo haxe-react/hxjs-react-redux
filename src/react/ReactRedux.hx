@@ -4,7 +4,7 @@ import react.ReactComponent;
 
 @:jsRequire('react-redux')
 extern class ReactRedux {
-	public static function connect(mapStateToProps:Dynamic, mapDispatchToProps:Dynamic):Class<ReactComponent>->Class<ReactComponent>;
+	public static function connect(mapStateToProps:Dynamic, mapDispatchToProps:Dynamic, mergeProps:Dynamic):Class<ReactComponent>->Class<ReactComponent>;
 }
 
 @:jsRequire('react-redux', 'Provider')
