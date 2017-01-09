@@ -16,6 +16,10 @@ class Macro {
 		var mergeProps = macro null;
 		
 		for(field in fields) {
+			if(field.access.indexOf(AStatic) == -1) {
+				Context.warning('Non-static member found. Maybe forgotten to add `static` keyword?', field.pos);
+				continue;
+			}
 			switch field.name {
 				case 'mapStateToProps': mapStateToProps = macro mapStateToProps;
 				case 'mapDispatchToProps': mapDispatchToProps = macro mapDispatchToProps;
