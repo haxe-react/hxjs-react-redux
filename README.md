@@ -1,3 +1,5 @@
+** Deprecated: Please use https://github.com/elsassph/haxe-redux instead **
+
 # React-Redux for Haxe
 
 Helper to use react-redux in Haxe.
